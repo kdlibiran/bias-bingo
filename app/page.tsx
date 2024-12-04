@@ -4,31 +4,31 @@ import { useState, useEffect } from 'react'
 import { BingoBox } from '@/components/bingo-box'
 
 const statements = [
-  "Tattoos are unprofessional.",
-  "People with tattoos are rebellious.",
-  "Tattoos are only for criminals.",
-  "Tattoos ruin your job prospects.",
-  "Women with tattoos are less respectable.",
-  "Tattoos are inappropriate for teachers or educators.",
-  "Tattoos symbolize bad life choices.",
-  "People with tattoos regret them later in life.",
-  "Tattoos are a sign of immaturity.",
-  "Tattoos make you look untrustworthy.",
-  "Tattoos have no artistic value.",
-  "Older people shouldn’t get tattoos.",
-  "Tattoos should always be hidden in the workplace.",
-  "Tattoos are a waste of money.",
-  "Tattoos make people look intimidating.",
-  "Tattoos are only for creative or 'artsy' people.",
-  "Visible tattoos mean you don’t respect tradition.",
-  "Tattoos are associated with gangs or illegal activities.",
-  "Tattoos look dirty or unhygienic.",
-  "Tattoos have no deep meaning.",
-  "You can’t be religious and have tattoos.",
-  "Tattoos make people less approachable.",
-  "People with tattoos can’t work in customer service.",
-  "Tattoos are only for young people.",
-  "Tattoos are permanent mistakes."
+  `Tattoos are unprofessional.`,
+  `People with tattoos are rebellious.`,
+  `Tattoos are only for criminals.`,
+  `Tattoos ruin your job prospects.`,
+  `Women with tattoos are less respectable.`,
+  `Tattoos are inappropriate for teachers or educators.`,
+  `Tattoos symbolize bad life choices.`,
+  `People with tattoos regret them later in life.`,
+  `Tattoos are a sign of immaturity.`,
+  `Tattoos make you look untrustworthy.`,
+  `Tattoos have no artistic value.`,
+  `Older people shouldn't get tattoos.`,
+  `Tattoos should always be hidden in the workplace.`,
+  `Tattoos are a waste of money.`,
+  `Tattoos make people look intimidating.`,
+  `Tattoos are only for creative or artsy people.`,
+  `Visible tattoos mean you don't respect tradition.`,
+  `Tattoos are associated with gangs or illegal activities.`,
+  `Tattoos look dirty or unhygienic.`,
+  `Tattoos have no deep meaning.`,
+  `You can't be religious and have tattoos.`,
+  `Tattoos make people less approachable.`,
+  `People with tattoos can't work in customer service.`,
+  `Tattoos are only for young people.`,
+  `Tattoos are permanent mistakes.`
 ];
 
 export default function Home() {
@@ -69,14 +69,13 @@ export default function Home() {
             key={index} 
             marked={marked} 
             onClick={() => handleBoxClick(index)} 
-            number={index + 1}
             statement={statements[index]}
           />
         ))}
       </div>
       {hasBingo && (
         <div className="mt-4 text-xl font-bold text-green-600">
-          BINGO! You've won!
+          BINGO! You&apos;ve won!
         </div>
       )}
     </div>

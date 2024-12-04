@@ -1,11 +1,10 @@
 interface BingoBoxProps {
   marked: boolean
   onClick: () => void
-  number: number
   statement: string
 }
 
-export function BingoBox({ marked, onClick, number, statement }: BingoBoxProps) {
+export function BingoBox({ marked, onClick, statement }: BingoBoxProps) {
   return (
     <button
       className={`relative flex items-center justify-center w-36 h-36 text-md font-bold rounded-md transition-colors duration-200 ${
