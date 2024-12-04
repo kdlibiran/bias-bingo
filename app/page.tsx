@@ -10,61 +10,108 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 
-const statements = [
-  `Tattoos are unprofessional.`,
-  `People with tattoos are rebellious.`,
-  `Tattoos are only for criminals.`,
-  `Tattoos ruin your job prospects.`,
-  `Women with tattoos are less respectable.`,
-  `Tattoos are inappropriate for teachers or educators.`,
-  `Tattoos symbolize bad life choices.`,
-  `People with tattoos regret them later in life.`,
-  `Tattoos are a sign of immaturity.`,
-  `Tattoos make you look untrustworthy.`,
-  `Tattoos have no artistic value.`,
-  `Older people shouldn't get tattoos.`,
-  `Tattoos should always be hidden in the workplace.`,
-  `Tattoos are a waste of money.`,
-  `Tattoos make people look intimidating.`,
-  `Tattoos are only for creative or artsy people.`,
-  `Visible tattoos mean you don't respect tradition.`,
-  `Tattoos are associated with gangs or illegal activities.`,
-  `Tattoos look dirty or unhygienic.`,
-  `Tattoos have no deep meaning.`,
-  `You can't be religious and have tattoos.`,
-  `Tattoos make people less approachable.`,
-  `People with tattoos can't work in customer service.`,
-  `Tattoos are only for young people.`,
-  `Tattoos are permanent mistakes.`
-];
-
-const reasons = [
-  "Corporate dress codes often prioritize a 'clean' appearance, equating visible tattoos with casualness or informality.",
-  "Tattoos have been symbols of defiance in youth culture and rebellion against societal norms.",
-  "Historically, tattoos were used to mark prisoners in some cultures, linking them to criminality.",
-  "Some employers see tattoos as unprofessional or distracting in customer-facing roles.",
-  "Traditional gender roles associate women with purity or modesty, making tattoos appear rebellious or provocative.",
-  "Educators are expected to be 'role models,' and tattoos might be seen as setting a 'bad example' for students.",
-  "Tattoos are often seen as impulsive decisions due to their permanence, symbolizing lack of foresight.",
-  "Tattoos were historically associated with certain subcultures, creating a perception of immaturity.",
-  "Media often portrays tattooed characters as villains or untrustworthy individuals.",
-  "People who don't consider tattoos as art see them as unrefined or meaningless scribbles.",
-  "Society often views older people with tattoos as out of place or trying to appear younger.",
-  "Traditional workplaces value conformity, where tattoos are perceived as inappropriate.",
-  "Tattoos can be seen as extravagant, with critics viewing them as a waste of money.",
-  "Large or bold tattoos might be interpreted as aggressive or intimidating.",
-  "Creative or artsy people are more likely associated with tattoos due to their visual nature.",
-  "Tattoos challenge cultural norms in conservative societies, leading to the perception of disrespect.",
-  "Some tattoos have been co-opted by gangs, creating a lingering association.",
-  "Misconceptions about hygiene during tattooing lead to views of tattoos being unsanitary.",
-  "People assume tattoos are done without deep thought or purpose.",
-  "Religious interpretations of tattoos as desecrating the 'body as a temple' lead to discrimination.",
-  "Tattoos can make people appear unapproachable to those uncomfortable with visible body art.",
-  "Tattoos in customer service are sometimes seen as distracting or unprofessional.",
-  "Older generations often view tattoos as a 'young person's trend,' dismissing them for older people.",
-  "Many see tattoos as permanent regrets due to changing tastes or circumstances.",
-  "Tattoos' historical association with punishment or marginalization contributes to their stigma."
-];
+const statementsWithReasons = [
+  {
+    "bias": "Tattoos are unprofessional.",
+    "reason": "Corporate environments often associate tattoos with casualness or informality, making them seem inappropriate for professional settings."
+  },
+  {
+    "bias": "People with tattoos are rebellious.",
+    "reason": "Tattoos are historically linked to countercultures and defiance against societal norms, reinforcing the stereotype of rebellion."
+  },
+  {
+    "bias": "Tattoos are only for criminals.",
+    "reason": "In history, tattoos were used to mark prisoners or gang affiliations, leading to a persistent association with criminal behavior."
+  },
+  {
+    "bias": "Tattoos ruin your job prospects.",
+    "reason": "Employers may perceive visible tattoos as distracting or unprofessional, fearing they might affect client or customer perceptions."
+  },
+  {
+    "bias": "Women with tattoos are less respectable.",
+    "reason": "Traditional gender roles view women with tattoos as challenging expectations of modesty and respectability."
+  },
+  {
+    "bias": "Tattoos are inappropriate for teachers or educators.",
+    "reason": "Educators are seen as role models, and tattoos may be perceived as setting a bad example for students in conservative communities."
+  },
+  {
+    "bias": "Tattoos symbolize bad life choices.",
+    "reason": "The permanence of tattoos leads people to assume they are impulsive decisions reflecting poor judgment."
+  },
+  {
+    "bias": "People with tattoos regret them later in life.",
+    "reason": "The idea of changing tastes or circumstances fosters the belief that tattoos will eventually lead to regret."
+  },
+  {
+    "bias": "Tattoos are a sign of immaturity.",
+    "reason": "Visible body art is often associated with youthful experimentation or rebellion, making it seem immature to some."
+  },
+  {
+    "bias": "Tattoos make you look untrustworthy.",
+    "reason": "Media often portrays tattooed characters as villains or troublemakers, creating a stereotype of dishonesty."
+  },
+  {
+    "bias": "Tattoos have no artistic value.",
+    "reason": "People unfamiliar with tattoo art may view it as unrefined or lacking creativity compared to traditional art forms."
+  },
+  {
+    "bias": "Older people shouldn’t get tattoos.",
+    "reason": "Tattoos are seen as a trend for younger generations, with older individuals judged as trying to appear youthful or rebellious."
+  },
+  {
+    "bias": "Tattoos should always be hidden in the workplace.",
+    "reason": "Workplace dress codes often prioritize a conservative appearance, leading to the expectation of covering tattoos."
+  },
+  {
+    "bias": "Tattoos are a waste of money.",
+    "reason": "Critics may view tattoos as an unnecessary expense with no practical or lasting value."
+  },
+  {
+    "bias": "Tattoos make people look intimidating.",
+    "reason": "Bold or large tattoos can create an impression of aggressiveness, especially when they cover visible areas like arms or necks."
+  },
+  {
+    "bias": "Tattoos are only for creative or 'artsy' people.",
+    "reason": "Because tattoos are visual and expressive, they are often stereotyped as fitting creative or artistic personalities."
+  },
+  {
+    "bias": "Visible tattoos mean you don’t respect tradition.",
+    "reason": "In conservative cultures, tattoos challenge norms of conformity and are sometimes viewed as a rejection of tradition."
+  },
+  {
+    "bias": "Tattoos are associated with gangs or illegal activities.",
+    "reason": "Certain tattoo designs are linked to gang symbols, creating a broader stereotype associating tattoos with crime."
+  },
+  {
+    "bias": "Tattoos look dirty or unhygienic.",
+    "reason": "Misconceptions about the tattooing process lead people to assume tattoos are unsanitary or unsafe."
+  },
+  {
+    "bias": "Tattoos have no deep meaning.",
+    "reason": "Not all tattoos are visibly symbolic, leading some to dismiss them as superficial or meaningless."
+  },
+  {
+    "bias": "You can’t be religious and have tattoos.",
+    "reason": "Religious interpretations of body modification as desecration foster the belief that tattoos conflict with spirituality."
+  },
+  {
+    "bias": "Tattoos make people less approachable.",
+    "reason": "Visible tattoos can make people seem intimidating or unrelatable to those uncomfortable with body art."
+  },
+  {
+    "bias": "People with tattoos can’t work in customer service.",
+    "reason": "Customer-facing roles often prioritize a neutral appearance, and tattoos may be seen as distracting or unappealing."
+  },
+  {
+    "bias": "Tattoos are only for young people.",
+    "reason": "Older individuals with tattoos are often judged as trying to act younger or reliving a past trend."
+  },
+  {
+    "bias": "Tattoos are permanent mistakes.",
+    "reason": "The irreversible nature of tattoos leads to the assumption that they will eventually be regretted."
+  }
+]
 
 export default function Home() {
   const [board, setBoard] = useState(Array(25).fill(false))
@@ -76,7 +123,7 @@ export default function Home() {
     const newBoard = [...board]
     newBoard[index] = !newBoard[index]
     setBoard(newBoard)
-    setSelectedReason(reasons[index])
+    setSelectedReason(statementsWithReasons[index].reason)
     setIsDialogOpen(true)
   }
 
@@ -105,9 +152,9 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-8">Bias Bingo</h1>
-      <h2 className="text-2xl font-bold mb-4">Instructions</h2>
-      <p className="text-lg mb-4">
+      <h1 className="text-4xl font-bold mb-8 text-center">Bias Bingo</h1>
+      <h2 className="text-2xl font-bold mb-4 text-center">Instructions</h2>
+      <p className="text-lg mb-4 text-center">
         Click on the statements that you have heard before.
       </p>
       {hasBingo && (
@@ -119,7 +166,7 @@ export default function Home() {
             key={index} 
             marked={marked} 
             onClick={() => handleBoxClick(index)} 
-            statement={statements[index]}
+            statement={statementsWithReasons[index].bias}
           />
         ))}
       </div>
