@@ -8,7 +8,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 
 const statements = [
@@ -108,7 +107,7 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <h1 className="text-4xl font-bold mb-8">Bias Bingo</h1>
       {hasBingo && (
-        <div className="mb-4 text-2xl font-semibold text-green-600">You've won!</div>
+        <div className="mb-4 text-2xl font-semibold text-green-600">You&apos;ve won!</div>
       )}
       <div className="grid grid-cols-5 gap-2 bg-white p-4 rounded-lg shadow-lg">
         {board.map((marked, index) => (
