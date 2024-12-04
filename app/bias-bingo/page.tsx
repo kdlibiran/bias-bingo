@@ -153,10 +153,6 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <h1 className="text-4xl font-bold mb-8 text-center">Bias Bingo</h1>
-      <h2 className="text-2xl font-bold mb-4 text-center">Instructions</h2>
-      <p className="text-lg mb-4 text-center">
-        Click on the statements that you have heard before.
-      </p>
       {hasBingo && (
         <div className="mb-4 text-2xl font-semibold text-green-600">You&apos;ve won!</div>
       )}

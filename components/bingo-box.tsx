@@ -20,7 +20,7 @@ export function BingoBox({ marked, onClick, statement }: BingoBoxProps) {
           <div className="absolute w-full h-1 bg-gray-800 transform -rotate-45" />
         </>
       )}
-      <span>{statement}</span>
+      {marked && <span className="text-white">{statement}</span>}
     </button>
   )
 }
