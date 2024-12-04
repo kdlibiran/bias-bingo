@@ -2,30 +2,24 @@
 
 import { useState, useEffect } from 'react'
 import { BingoBox } from '@/components/bingo-box'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog"
+import Image from 'next/image'
 
 const statementsWithReasons =  [
   {
     "bias": "Tattoos are seen as unprofessional in certain environments.",
-    "reason": "Many people believe tattoos conflict with corporate dress codes and professional norms, although this perception is gradually changing in more modern and creative industries."
+    "slide": "/slide1.png"
   },
   {
     "bias": "Tattoos are often associated with criminal behavior.",
-    "reason": "Tattoos have historically been linked to gangs or marginalized groups, but this stereotype is increasingly being challenged as tattoos become more widely accepted as a form of self-expression and art."
+    "slide": "/slide2.png"
   },
   {
     "bias": "People with tattoos are often perceived as less intelligent or less educated.",
-    "reason": "There's a societal bias that assumes individuals with tattoos lack professionalism or education, even though many highly educated and successful people choose to get tattoos."
+    "slide": "/slide3.png"
   },
   {
     "bias": "Tattoos are seen as symbols of rebellion or defiance against authority.",
-    "reason": "Tattoos are often viewed as a form of protest or resistance to societal norms, especially in conservative or traditional cultures."
+    "slide": "/slide4.png"
   },
   {
     "bias": "Free Space",
@@ -33,19 +27,19 @@ const statementsWithReasons =  [
   },
   {
     "bias": "Tattoos are associated with lower social classes.",
-    "reason": "Tattoos have traditionally been linked to working-class or marginalized groups, but this association is breaking down as tattoos gain popularity across all social and economic backgrounds."
+    "slide": "/slide5.png"
   },
   {
     "bias": "People with tattoos are often believed to lead unhealthy or reckless lifestyles.",
-    "reason": "Some people assume that getting tattoos indicates a non-conformist or irresponsible lifestyle, even though many tattooed individuals live healthy, balanced lives."
+    "slide": "/slide6.png"
   },
   {
     "bias": "Women with tattoos are often viewed as less respectable or more sexualized.",
-    "reason": "Society often judges women with tattoos as being less respectable or more rebellious, and their tattoos may be unfairly sexualized or associated with non-conformity."
+    "slide": "/slide7.png"
   },
   {
     "bias": "You can’t be religious and have tattoos.",
-    "reason": "There's a belief that tattoos conflict with religious values or teachings, although many religious individuals choose to get tattoos that have personal or spiritual meaning."
+    "slide": "/slide8.png"
   },
 ]
 
@@ -53,43 +47,49 @@ const statementsWithReasons =  [
 export default function Home() {
   const [board, setBoard] = useState([false, false, false, false, true, false, false, false, false])
   const [hasBingo, setHasBingo] = useState(false)
-  const [selectedReason, setSelectedReason] = useState<string | null>(null)
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [selectedSlide, setSelectedSlide] = useState<string | null>(null)
+  const [isImageOpen, setIsImageOpen] = useState(false)
 
   const handleBoxClick = (index: number) => {
+    if(index === 4) {
+      return
+    }
     const newBoard = [...board]
-    newBoard[index] = !newBoard[index]
+    newBoard[index] = true
     setBoard(newBoard)
-    setSelectedReason(statementsWithReasons[index].reason)
-    setIsDialogOpen(true)
+    if (statementsWithReasons[index].slide) {
+      setSelectedSlide(statementsWithReasons[index].slide)
+      setIsImageOpen(true)
+    }
   }
 
   useEffect(() => {
     const checkBingo = () => {
-      // Check rows
-      for (let i = 0; i < 3; i++) {
-        if (board.slice(i * 3, i * 3 + 3).every(box => box)) return true
-      }
-      // Check columns
-      for (let i = 0; i < 3; i++) {
-        if ([0, 3, 6].every(j => board[i + j])) return true
-      }
-      // Check diagonals
-      if ([0, 4, 8].every(i => board[i])) return true
-      if ([2, 4, 6].every(i => board[i])) return true
-      return false
+      return board.every(box => box);
     }
 
     const bingo = checkBingo();
     setHasBingo(bingo);
-    if (bingo) {
-      setIsDialogOpen(true);
-    }
   }, [board])
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-8 text-center">Bias Bingo</h1>
+    <div className="w-full h-full relative">
+      {isImageOpen && (
+        <div 
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50"
+          onClick={() => setIsImageOpen(false)}
+        >
+          <div 
+            className="relative w-full h-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button onClick={() => setIsImageOpen(false)} className="absolute top-2 right-2 text-white z-50">Close</button>
+            <Image src={selectedSlide!} alt="Slide" layout="fill" objectFit="contain" />
+          </div>
+        </div>
+      )}
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <h1 className="text-4xl font-bold mb-8 text-center">Bias Bingo</h1>
       {hasBingo && (
         <div className="mb-4 text-2xl font-semibold text-green-600">You&apos;ve won!</div>
       )}
@@ -104,17 +104,7 @@ export default function Home() {
           />
         ))}
       </div>
-      
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle className="text-3xl font-bold">{"Reason"}</DialogTitle>
-            <DialogDescription className="text-lg">
-              {selectedReason}
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+      </div>
     </div>
   )
 }
